@@ -18,6 +18,7 @@
 ### Association
 
 - has_many :purchases
+- has_many :items
 
 
 
@@ -28,28 +29,29 @@
 | ------------ | --------- | ------------------------------ |
 | item_name    | string    | null: false                    |
 | description  | text      | null: false                    |
-| category     | string    | null: false                    |
-| condition    | string    | null: false                    |
-| charge       | string    | null: false                    |
-| area         | string    | null: false                    |
-| ship_date    | date      | null: false                    |
+| category_id  | integer   | null: false                    |
+| condition_id | integer   | null: false                    |
+| charge_id    | integer   | null: false                    |
+| area_id      | integer   | null: false                    |
+| ship_date_id | integer   | null: false                    |
 | price        | integer   | null: false                    |
-| exhibitors   | string    | null: false                    |
 | sold_status  | boolean   | null: false                    |
+| user         | references| null: false, foreign_key: true |
 
 ### Association
 
 - has_one :purchase
+- belongs_to :users
 
 
 
 
 ## purchases テーブル
 
-| Column       | Type      | Options                        |
-| ------------ | --------- | ------------------------------ |
-| user_id      | references| null: false, foreign_key: true |
-| item_id      | references| null: false, foreign_key: true |
+| Column    | Type      | Options                        |
+| --------- | --------- | ------------------------------ |
+| user      | references| null: false, foreign_key: true |
+| item      | references| null: false, foreign_key: true |
 
 
 ### Association
@@ -63,14 +65,13 @@
 
 | Column           | Type      | Options                        |
 | ---------------- | --------- | ------------------------------ |
-| address          | string    | null: false                    |
 | postal_code      | string    | null: false                    |
-| prefectures      | string    | null: false                    |
+| area_id          | integer   | null: false                    |
 | municipalities   | string    | null: false                    |
 | house_number     | string    | null: false                    |
-| building_name    | string    | null: false                    |
+| building_name    | string    |                                |
 | phone_number     | string    | null: false                    |
-| purchase_id      | references| null: false, foreign_key: true |
+| purchase         | references| null: false, foreign_key: true |
 
 
 ### Association
