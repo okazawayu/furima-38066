@@ -18,7 +18,6 @@
 ### Association
 
 - has_many :purchases
-- has_many :items
 
 
 
@@ -37,13 +36,10 @@
 | price        | integer   | null: false                    |
 | exhibitors   | string    | null: false                    |
 | sold_status  | boolean   | null: false                    |
-| user         | references| null: false, foreign_key: true |
-| purchase     | references| null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : user
-- belongs_to :purchase
+- has_one :purchase
 
 
 
@@ -52,13 +48,14 @@
 
 | Column       | Type      | Options                        |
 | ------------ | --------- | ------------------------------ |
-| user         | references| null: false, foreign_key: true |
+| user_id      | references| null: false, foreign_key: true |
+| item_id      | references| null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :shipping
 
 
@@ -73,7 +70,7 @@
 | house_number     | string    | null: false                    |
 | building_name    | string    | null: false                    |
 | phone_number     | string    | null: false                    |
-| purchase         | references| null: false, foreign_key: true |
+| purchase_id      | references| null: false, foreign_key: true |
 
 
 ### Association
