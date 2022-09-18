@@ -35,13 +35,12 @@
 | area_id      | integer   | null: false                    |
 | ship_date_id | integer   | null: false                    |
 | price        | integer   | null: false                    |
-| sold_status  | boolean   | null: false                    |
 | user         | references| null: false, foreign_key: true |
 
 ### Association
 
 - has_one :purchase
-- belongs_to :users
+- belongs_to :user
 
 
 
