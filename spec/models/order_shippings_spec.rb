@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe OrderShipping, type: :model do
   before do
+    @user = FactoryBot.build(:user)
+    @item = FactoryBot.build(:item)
     @order_shipping = FactoryBot.build(:order_shipping)
+    @order_shipping.user_id = @user.id
+    @order_shipping.item_id = @item.id
   end
 
   describe '配送先情報の保存' do
@@ -32,6 +36,10 @@ RSpec.describe OrderShipping, type: :model do
       end
       it '番地が空でなければ保存できる' do
         @order_shipping.house_number = '旭区１２３'
+        expect(@order_shipping).to be_valid
+      end
+      it '建物名が空でも保存できる' do
+        @order_shipping.building_name = nil
         expect(@order_shipping).to be_valid
       end
       it '電話番号が11番桁以内かつハイフンなしであれば保存できる' do
@@ -93,6 +101,11 @@ RSpec.describe OrderShipping, type: :model do
       end
       it '電話番号が12桁以上あると保存できない' do
         @order_shipping.phone_number = '12345678910123'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
+      end
+      it '電話番号が9桁以下では保存できない' do
+        @order_shipping.phone_number = '123456789'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
       end

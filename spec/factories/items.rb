@@ -3,6 +3,7 @@ FactoryBot.define do
     after(:build) do |item|
       item.image.attach(io: File.open('spec/test.png'), filename: 'test.png')
     end
+    id { Faker::Number.between(from: 1, to: 10) }
     item_name          { Faker::Name.initials }
     description        { Faker::Name.initials }
     category_id        { Faker::Number.between(from: 2, to: 11) }

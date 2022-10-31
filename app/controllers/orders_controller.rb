@@ -3,12 +3,10 @@ class OrdersController < ApplicationController
   before_action :item_user
 
   def index
-    @item = Item.find(params[:item_id])
     @order_shipping = OrderShipping.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_shipping = OrderShipping.new(order_params)
     # binding.pry
     if @order_shipping.valid?
